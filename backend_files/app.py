@@ -12,7 +12,7 @@ model = joblib.load("super_kart_product_store_sales_prediction_model_v1_0.joblib
 
 
 # Define a route for the home page (GET request)
-@product_Store_Sales_Total_predictor_api.get('/')
+@app.get('/')
 def home():
     """
     This function handles GET requests to the root URL ('/') of the API.
@@ -22,7 +22,7 @@ def home():
 
 
 # Define an endpoint for single product-store prediction (POST request)
-@product_Store_Sales_Total_predictor_api.post('/v1/totalsales')
+@app.post('/v1/totalsales')
 def predict_Sales_Total():
     """
     This function handles POST requests to the '/v1/totalsales' endpoint.
@@ -59,11 +59,11 @@ def predict_Sales_Total():
     predicted_total_sale = round(float(predict_product_total_sales), 2)
 
     # Return the total sales
-    return jsonify({'Predicted Total Sales (in dollars)': predicted_total_sale})
+    return jsonify({'Predicted Total Sales ': predicted_total_sale})
 
 
 # Define an endpoint for batch prediction (POST request)
-@product_Store_Sales_Total_predictor_api.post('/v1/totalsalebatch')
+@app.post('/v1/totalsalebatch')
 def predict_Sales_Total_batch():
     """
     This function handles POST requests to the '/v1/totalsalebatch' endpoint.
@@ -92,4 +92,4 @@ def predict_Sales_Total_batch():
 
 # Run the Flask application in debug mode if this script is executed directly
 if __name__ == '__main__':
-    product_Store_Sales_Total_predictor_api.run(debug=True)
+    app.run(debug=True)
