@@ -72,21 +72,24 @@ def predict_Sales_Total_batch():
     dictionary in the JSON response.
     """
     # Get the uploaded CSV file from the request
-    file = request.files['file']
-
+    file = request.files["file"]
+ 
     # Read the CSV file into a Pandas DataFrame
     input_data = pd.read_csv(file)
-
+ 
     # Make predictions for all rows in the DataFrame
     predicted_sales_raw = model.predict(input_data).tolist()
-
+ 
     # Convert to plain Python floats, rounded
     predicted_sales = [round(float(sale), 2) for sale in predicted_sales_raw]
-
-    # Create a dictionary of predictions with Product_Store IDs as keys
-    product_store_ids = input_data['Product_Store_Id'].tolist()
-    output_dict = dict(zip(product_store_ids, predicted_sales))
-
+ 
+    # Key predictions by row position since the CSV has no guaranteed ID column.
+    # If your CSV DOES have a unique ID column, replace the line below with:
+    #   ids = input_data['YOUR_ID_COLUMN_NAME'].tolist()
+    ids = [f"row_{i}" for i in range(len(predicted_sales))]
+ 
+    output_dict = dict(zip(ids, predicted_sales))
+ 
     return jsonify(output_dict)
 
 
