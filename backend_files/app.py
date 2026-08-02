@@ -36,14 +36,14 @@ def predict_Sales_Total():
     # NOTE: Replace these keys with the exact feature names/order used to train your model
     sample = {
         'Product_Weight': property_data['Product_Weight'],
-        'Product_Sugar_Content': property_data['Product_Sugar_Content'],
         'Product_Allocated_Area': property_data['Product_Allocated_Area'], 
         'Product_MRP': property_data['Product_MRP'],
+        'Store_Age_Years': property_data['Store_Age_Years'],
+        'Product_Sugar_Content': property_data['Product_Sugar_Content'],
         'Store_Size': property_data['Store_Size'],
         'Store_Location_City_Type': property_data['Store_Location_City_Type'],
         'Store_Type': property_data['Store_Type'],
         'Product_Id_char': property_data['Product_Id_char'],
-        'Store_Age_Years': property_data['Store_Age_Years'],
         'Product_Type_Category': property_data['Product_Type_Category']
 
     }
