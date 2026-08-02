@@ -5,14 +5,14 @@ import pandas as pd  # For data manipulation
 from flask import Flask, request, jsonify  # For creating the Flask API
 
 # Initialize the Flask application
-Product_Store_Sales_Total_predictor_api = Flask("Super Kart Total Sales Prediction")
+product_Store_Sales_Total_predictor_api = Flask("Super Kart Total Sales Prediction")
 
 # Load the trained machine learning model
 model = joblib.load("super_kart_product_store_sales_prediction_model_v1_0.joblib")
 
 
 # Define a route for the home page (GET request)
-@Product_Store_Sales_Total_predictor_api.get('/')
+@product_Store_Sales_Total_predictor_api.get('/')
 def home():
     """
     This function handles GET requests to the root URL ('/') of the API.
@@ -22,7 +22,7 @@ def home():
 
 
 # Define an endpoint for single product-store prediction (POST request)
-@Product_Store_Sales_Total_predictor_api.post('/v1/totalsales')
+@product_Store_Sales_Total_predictor_api.post('/v1/totalsales')
 def predict_Sales_Total():
     """
     This function handles POST requests to the '/v1/totalsales' endpoint.
@@ -63,7 +63,7 @@ def predict_Sales_Total():
 
 
 # Define an endpoint for batch prediction (POST request)
-@Product_Store_Sales_Total_predictor_api.post('/v1/totalsalebatch')
+@product_Store_Sales_Total_predictor_api.post('/v1/totalsalebatch')
 def predict_Sales_Total_batch():
     """
     This function handles POST requests to the '/v1/totalsalebatch' endpoint.
@@ -92,4 +92,4 @@ def predict_Sales_Total_batch():
 
 # Run the Flask application in debug mode if this script is executed directly
 if __name__ == '__main__':
-    Product_Store_Sales_Total_predictor_api.run(debug=True)
+    product_Store_Sales_Total_predictor_api.run(debug=True)
