@@ -58,7 +58,7 @@ if st.button("Predict", type="primary"):
     else:
         response = requests.post(f"{BACKEND_URL}/v1/totalsales", json=input_data.to_dict(orient='records')[0])
         if response.status_code == 200:
-            prediction = response.json()['Predicted_Total_Sales']
+            prediction = response.json()["Predicted Total Sales "]
             st.success(f"Predicted Product Total Sales: {prediction}")
         else:
             st.error("Unable to connect to the prediction API.")
